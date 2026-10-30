@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#07111f">
+<title>Dao động điều hòa</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/oscillator.js" defer></script>
+</head>
+<body>
+
+<header class="header">
+  <div class="container nav">
+
+    <!-- Logo -->
+    <a href="index.html" class="brand">
+      <span class="brand-mark">◇</span>
+      <span>VẬT LÝ 11</span>
+    </a>
+
+    <!-- Nút menu mobile -->
+    <button class="menu-toggle" id="menuToggle"
+      aria-label="Mở menu"
+      aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Menu -->
+    <nav class="navlinks" id="navLinks">
+      <a href="index.html">Trang chủ</a>
+<a href="dao-dong.html" class="active">Dao động</a>
+<a href="con-lac.html">Khu thí nghiệm</a>
+<a href="ly-thuyet.html">Lý thuyết</a>
+
+      <span class="mobile-class"></span>
+    </nav>
+
+    <!-- Nhãn PC -->
+    <span class="class-badge">LỚP 11A2</span>
+
+  </div>
+</header>
+
+<main class="container page-wrap"><div class="page-top"><div class="page-intro"><div class="eyebrow">THÍ NGHIỆM 01 /</div><h1 class="page-title">Dao động <span>điều hòa</span></h1><p>Một khu mô phỏng chuyên biệt. Thay đổi biên độ, chu kỳ và pha ban đầu để theo dõi trạng thái tức thời và đồ thị.</p></div><div class="page-icon">∿</div></div>
+<div class="two-col"><section class="panel"><span class="tag">THAM SỐ ĐẦU VÀO</span>
+<div class="control"><div class="control-head"><label for="amp">Biên độ A</label><b id="ampVal">5,0 cm</b></div><input id="amp" type="range" min=".5" max="10" step=".5" value="5"><div class="range-ends"><span>0,5 cm</span><span>10 cm</span></div></div>
+<div class="control"><div class="control-head"><label for="period">Chu kỳ T</label><b id="periodVal">2,0 s</b></div><input id="period" type="range" min=".5" max="6" step=".1" value="2"><div class="range-ends"><span>0,5 s</span><span>6 s</span></div></div>
+<div class="control"><div class="control-head"><label for="phase">Pha ban đầu φ</label><b id="phaseVal">0,00 rad</b></div><input id="phase" type="range" min="-3.14159265" max="3.14159265" step=".1" value="0"><div class="range-ends"><span>−π</span><span>π</span></div></div>
+<div class="formula">x = A cos(ωt + φ)<br>v = −ωA sin(ωt + φ)<br>a = −ω²A cos(ωt + φ) = −ω²x</div><p class="small">ω = 2π/T. Đơn vị: x (cm), v (cm/s), a (cm/s²).</p></section>
+<section class="panel"><div class="section-heading"><div><span class="tag">SỐ LIỆU ĐO TRỰC TIẾP</span><h2>Giá trị tức thời</h2></div><button class="btn small" id="playMotion">▶ Chạy</button></div>
+<div class="control"><div class="control-head"><label for="time">Thời gian t</label><b id="timeVal">0,00 s</b></div><input id="time" type="range" min="0" max="12" step=".01" value="0"><div class="range-ends"><span>0 s</span><span id="timeMax">12 s</span></div></div>
+<div class="metric-grid"><div class="metric"><small>Li độ x</small><strong id="xNow">5,00</strong><small>cm</small></div><div class="metric"><small>Vận tốc v</small><strong id="vNow">0,00</strong><small>cm/s</small></div><div class="metric"><small>Gia tốc a</small><strong id="aNow">−49,35</strong><small>cm/s²</small></div></div>
+<div class="canvas-title"><b>Vị trí vật trên trục dao động</b><span id="phaseNow" class="small">Pha: 0,00 rad</span></div><canvas id="pendulumCanvas" class="chart" height="225"></canvas></section></div>
+<section class="panel section-gap"><div class="section-heading"><div><div class="eyebrow">ĐỒ THỊ</div><h2>Đồ thị dao động</h2></div><p>Chọn một đồ thị hoặc xem đồng thời cả ba.</p></div>
+<div class="tab-row"><button class="btn small active" data-graph="all">Cả ba</button><button class="btn small" data-graph="x">Li độ x(t)</button><button class="btn small" data-graph="v">Vận tốc v(t)</button><button class="btn small" data-graph="a">Gia tốc a(t)</button></div>
+<div class="plot-grid" id="graphs"><div class="plot-box"><h3>Li độ x(t) <span>cm</span></h3><canvas id="gx" class="chart" height="245"></canvas></div><div class="plot-box"><h3>Vận tốc v(t) <span>cm/s</span></h3><canvas id="gv" class="chart" height="245"></canvas></div><div class="plot-box"><h3>Gia tốc a(t) <span>cm/s²</span></h3><canvas id="ga" class="chart" height="245"></canvas></div><div class="info-box"><span class="eyebrow">QUAN SÁT</span><h3>Nhận xét vật lý</h3><ul class="clean-list"><li>a = −ω²x nên a và x luôn ngược dấu.</li><li>Tại vị trí cân bằng, tốc độ đạt cực đại.</li><li>Ở hai biên, v = 0 và độ lớn gia tốc cực đại.</li></ul></div></div></section></main>
+<footer class="footer"><div class="container footer-row"><b>◈ VẬT LÝ 11</b><span>Phòng thí nghiệm vật lý ảo • Website học tập</span></div></footer></body></html>
