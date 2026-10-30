@@ -1,8 +1,0 @@
-
-(()=>{const $=id=>document.getElementById(id);const pi=Math.PI,fmt=(v,d=2)=>v.toLocaleString('vi-VN',{minimumFractionDigits:d,maximumFractionDigits:d});
-const data=[{L:.20,N:10,t:8.98},{L:.30,N:10,t:10.99},{L:.40,N:10,t:12.69},{L:.50,N:10,t:14.19},{L:.60,N:10,t:15.55}];
-const points=data.map(r=>({x:r.L,y:(r.t/r.N)**2}));let mx=points.reduce((s,p)=>s+p.x,0)/points.length,my=points.reduce((s,p)=>s+p.y,0)/points.length,num=0,den=0;points.forEach(p=>{num+=(p.x-mx)*(p.y-my);den+=(p.x-mx)**2});let k=num/den,b=my-k*mx,gfit=4*pi*pi/k;
-$('slopeValue').textContent=fmt(k,4)+' s²/m';$('fitG').textContent=fmt(gfit,3)+' m/s²';$('interceptValue').textContent=fmt(b,4)+' s²';
-function draw(){let c=$('fitChart'),rect=c.getBoundingClientRect(),h=285,d=devicePixelRatio||1;c.width=rect.width*d;c.height=h*d;let ctx=c.getContext('2d');ctx.setTransform(d,0,0,d,0,0);let w=rect.width,l=48,r=16,t=18,bt=34,pw=w-l-r,ph=h-t-bt,xmax=.7,ymax=.42;ctx.clearRect(0,0,w,h);ctx.font='10px Segoe UI';ctx.strokeStyle='#203950';for(let i=0;i<=4;i++){let y=t+ph*i/4;ctx.beginPath();ctx.moveTo(l,y);ctx.lineTo(w-r,y);ctx.stroke();ctx.fillStyle='#9ab0c8';ctx.fillText(fmt(ymax*(1-i/4),2),4,y+3);let x=l+pw*i/4;ctx.beginPath();ctx.moveTo(x,t);ctx.lineTo(x,h-bt);ctx.stroke();ctx.fillText(fmt(xmax*i/4,2),x-10,h-12)}let X=x=>l+x/xmax*pw,Y=y=>t+ph-y/ymax*ph;ctx.strokeStyle='#ffb86b';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(X(0),Y(b));ctx.lineTo(X(xmax),Y(k*xmax+b));ctx.stroke();ctx.fillStyle='#4de1e8';points.forEach(p=>{ctx.beginPath();ctx.arc(X(p.x),Y(p.y),5,0,2*pi);ctx.fill()});ctx.fillStyle='#eaf4ff';ctx.fillText('T² (s²)',l+5,t+12);ctx.fillText('L (m)',w-42,h-8)}
-window.addEventListener('resize',draw);draw();
-})();
