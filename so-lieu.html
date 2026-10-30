@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#07111f">
+<title>Bảng số liệu con lắc</title><link rel="icon" type="image/png" href="favicon.png"><link rel="stylesheet" href="assets/css/style.css"><script src="assets/js/main.js" defer></script><script src="assets/js/data.js" defer></script></head>
+<body>
+    <header class="header">
+  <div class="container nav">
+
+    <!-- Logo -->
+    <a href="index.html" class="brand">
+      <span class="brand-mark">◇</span>
+      <span>VẬT LÝ 11</span>
+    </a>
+
+    <!-- Nút menu mobile -->
+    <button class="menu-toggle" id="menuToggle"
+      aria-label="Mở menu"
+      aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Menu -->
+    <nav class="navlinks" id="navLinks">
+      <a href="index.html">Trang chủ</a>
+<a href="dao-dong.html">Dao động</a>
+<a href="con-lac.html" class="active">Khu thí nghiệm</a>
+<a href="ly-thuyet.html">Lý thuyết</a>
+
+      <span class="mobile-class"></span>
+    </nav>
+
+    <!-- Nhãn PC -->
+    <span class="class-badge">LỚP 11A2</span>
+
+  </div>
+</header>
+
+<main class="container page-wrap"><div class="page-top"><div class="page-intro"><div class="eyebrow">THÍ NGHIỆM 02 / TRANG 04</div><h1 class="page-title">Bảng <span>số liệu</span></h1><p>Nhập số liệu đo được hoặc dùng bộ dữ liệu mô phỏng. Các cột T, T² và g sẽ được tính tự động.</p></div><div class="page-icon">▦</div></div>
+<section class="panel"><div class="section-heading"><div><span class="tag">BẢNG DỮ LIỆU CÓ THỂ CHỈNH SỬA</span><h2>Kết quả đo</h2></div><span class="status">DỮ LIỆU MÔ PHỎNG BAN ĐẦU</span></div>
+<p class="small">Bộ số liệu được tạo gần g = 9,81 m/s² để minh họa cách xử lý. Đây không phải kết quả đo thực địa.</p>
+<div class="table-wrap"><table><thead><tr><th>Lần</th><th><i>l</i> (m)</th><th>N (dao động)</th><th>t̄ (s)</th><th>T (s)</th><th>T² (s²)</th><th>g (m/s²)</th></tr></thead><tbody id="dataBody"></tbody></table></div>
+<div class="toolbar"><button class="btn" id="resetData">↺ Khôi phục số liệu</button><button class="btn" id="addData">＋ Thêm dòng</button><button class="btn primary" id="exportData">⇩ Xuất CSV</button></div>
+<div class="metric-grid"><div class="metric"><small>g trung bình</small><strong id="meanG">9,81</strong><small>m/s²</small></div><div class="metric"><small>Số phép đo hợp lệ</small><strong id="countG">5</strong><small>dòng</small></div><div class="metric"><small>Sai lệch tương đối</small><strong id="errorG">0,0%</strong><small>so với 9,81 m/s²</small></div></div></section>
+<div class="callout">Công thức tính: T = t̄/N; T² = T × T; g = 4π²<i>l</i>/T². Nhập <i>l</i> theo mét, N là số dao động nguyên dương và t̄ theo giây.</div>
+<div class="button-row"><a class="btn" href="mo-phong.html">← Mô phỏng</a><a class="btn primary" href="do-thi.html">Đến trang đồ thị →</a></div></main>
+<footer class="footer"><div class="container footer-row"><b>◈ VẬT LÝ 11</b><span>Phòng thí nghiệm vật lý ảo • Website học tập</span></div></footer></body></html>

@@ -1,0 +1,10 @@
+
+(()=>{const $=id=>document.getElementById(id);const L=$('length'),angle=$('angle'),time=$('pendulumTime');if(!L||!angle)return;const pi=Math.PI;
+const fmt=(v,d=2)=>v.toLocaleString('vi-VN',{minimumFractionDigits:d,maximumFractionDigits:d});
+let running=true,last=0,phase=0,raf=0;
+function draw(){let c=$('pendulumView'),r=c.getBoundingClientRect(),h=245,d=devicePixelRatio||1;c.width=r.width*d;c.height=h*d;let ctx=c.getContext('2d');ctx.setTransform(d,0,0,d,0,0);ctx.clearRect(0,0,r.width,h);let cx=r.width/2,top=28,len=+L.value,theta=(+angle.value*pi/180)*Math.cos(phase),scale=Math.min(155,120+len*10),x=cx+scale*Math.sin(theta),y=top+scale*Math.cos(theta);ctx.strokeStyle='#28445e';ctx.lineWidth=1;for(let xx=20;xx<r.width;xx+=30){ctx.beginPath();ctx.moveTo(xx,0);ctx.lineTo(xx,h);ctx.stroke()}ctx.strokeStyle='#4de1e8';ctx.setLineDash([4,5]);ctx.beginPath();ctx.moveTo(cx,top);ctx.lineTo(cx,top+scale+12);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#eaf4ff';ctx.fillRect(cx-29,top-5,58,8);ctx.strokeStyle='#b4c8da';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx,top);ctx.lineTo(x,y);ctx.stroke();ctx.fillStyle='#4de1e8';ctx.beginPath();ctx.arc(x,y,13,0,2*pi);ctx.fill();ctx.fillStyle='#9ab0c8';ctx.font='12px Segoe UI';ctx.fillText('L = '+fmt(len,2)+' m',cx+12,top+scale*.45);ctx.fillText('θ = '+fmt(theta*180/pi,1)+'°',12,h-14)}
+function update(){let len=+L.value,deg=+angle.value,g=9.81,T=2*pi*Math.sqrt(len/g);$('lengthVal').textContent=fmt(len,2)+' m';$('angleVal').textContent=fmt(deg,0)+'°';$('periodTheory').textContent=fmt(T,3)+' s';$('freqTheory').textContent=fmt(1/T,3)+' Hz';draw()}
+function tick(ts){if(!running)return;if(last){let dt=(ts-last)/1000;phase+=dt*2*pi/(2*pi*Math.sqrt(+L.value/9.81))}last=ts;draw();raf=requestAnimationFrame(tick)}
+L.addEventListener('input',update);angle.addEventListener('input',update);$('togglePendulum').addEventListener('click',()=>{running=!running;$('togglePendulum').textContent=running?'Ⅱ Tạm dừng':'▶ Tiếp tục';last=0;if(running)raf=requestAnimationFrame(tick);else cancelAnimationFrame(raf)});
+window.addEventListener('resize',draw);update();raf=requestAnimationFrame(tick);
+})();
